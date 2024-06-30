@@ -50,6 +50,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "flutter_dotenv",
+      "rootUri": "file:///Users/jingyeong/.pub-cache/hosted/pub.dev/flutter_dotenv-5.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///Users/jingyeong/.pub-cache/hosted/pub.dev/flutter_lints-2.0.3",
       "packageUri": "lib/",
@@ -212,13 +218,13 @@
       "languageVersion": "3.2"
     },
     {
-      "name": "med_summary",
+      "name": "medSummary",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-06-30T06:06:16.677475Z",
+  "generated": "2024-06-30T11:55:33.044798Z",
   "generator": "pub",
   "generatorVersion": "3.2.3"
 }

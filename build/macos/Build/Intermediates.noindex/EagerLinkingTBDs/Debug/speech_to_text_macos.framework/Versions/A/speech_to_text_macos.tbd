@@ -1,0 +1,51 @@
+{
+  "main_library": {
+    "exported_symbols": [
+      {
+        "data": {
+          "global": [
+            "_$s20speech_to_text_macos23SpeechToTextMacosPluginC8register4withySo07FlutterI9Registrar_p_tFZ",
+            "_speech_to_text_macosVersionNumber",
+            "_$s20speech_to_text_macos23SpeechToTextMacosPluginCACycfC",
+            "_$s20speech_to_text_macos23SpeechToTextMacosPluginC6handle_6resultySo17FlutterMethodCallC_yypSgctF",
+            "_$s20speech_to_text_macos23SpeechToTextMacosPluginCACycfc",
+            "_$s20speech_to_text_macos23SpeechToTextMacosPluginCMa",
+            "_$s20speech_to_text_macos23SpeechToTextMacosPluginC6handle_6resultySo17FlutterMethodCallC_yypSgctFTq",
+            "_$s20speech_to_text_macos23SpeechToTextMacosPluginCN",
+            "_$s20speech_to_text_macos23SpeechToTextMacosPluginCfD",
+            "_$s20speech_to_text_macos23SpeechToTextMacosPluginCMn",
+            "_speech_to_text_macosVersionString"
+          ],
+          "objc_class": [
+            "_TtC20speech_to_text_macos23SpeechToTextMacosPlugin",
+            "PodsDummy_speech_to_text_macos"
+          ]
+        }
+      }
+    ],
+    "flags": [
+      {
+        "attributes": [
+          "not_app_extension_safe"
+        ]
+      }
+    ],
+    "install_names": [
+      {
+        "name": "@rpath/speech_to_text_macos.framework/Versions/A/speech_to_text_macos"
+      }
+    ],
+    "swift_abi": [
+      {
+        "abi": 7
+      }
+    ],
+    "target_info": [
+      {
+        "min_deployment": "11",
+        "target": "arm64-macos"
+      }
+    ]
+  },
+  "tapi_tbd_version": 5
+}
