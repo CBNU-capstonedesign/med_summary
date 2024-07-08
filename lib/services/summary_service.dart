@@ -1,6 +1,9 @@
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'dart:convert';
 
 class SummaryService {
   final String _baseUrl = 'https://naveropenapi.apigw.ntruss.com/text-summary/v1/summarize';
@@ -9,11 +12,14 @@ class SummaryService {
     final String clientId = dotenv.env['X-Naver-Client-Id']!;
     final String clientSecret = dotenv.env['X-Naver-Client-Secret']!;
 
+    debugPrint(clientId);
+    debugPrint(clientSecret);
+
     final response = await http.post(
       Uri.parse(_baseUrl),
       headers: {
-        'X-Naver-Client-Id': clientId,
-        'X-Naver-Client-Secret': clientSecret,
+        'X-NCP-APIGW-API-KEY-ID': clientId,
+        'X-NCP-APIGW-API-KEY': clientSecret,
         'Content-Type': 'application/json',
       },
       body: jsonEncode({
@@ -31,10 +37,12 @@ class SummaryService {
     );
 
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
+      // 응답 본문을 UTF-8로 디코딩
+      final data = jsonDecode(utf8.decode(response.bodyBytes));
+      debugPrint(utf8.decode(response.bodyBytes));  // 수정된 부분
       return data['summary'] ?? '요약된 내용이 없습니다';
     } else {
-      throw Exception('A요약 요청 실패: ${response.statusCode}');
+      throw Exception('요약 요청 실패: ${response.statusCode}');
     }
   }
 }
