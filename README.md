@@ -1,4 +1,3 @@
-# med_summary
 
 [![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)](https://gamy-ghoul-255.notion.site/75a255ea049f483692262e7c6ba2f0a9?pvs=4)
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
@@ -47,8 +46,6 @@
 | Rename: | 파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우 |
 | Remove: | 파일을 삭제하는 작업만 수행한 경우 |
 
-Role of github 
-1. [https://jane-aeiou.tistory.com/93#google_vignette](https://jane-aeiou.tistory.com/93#google_vignette)
-2. [https://velog.io/@pikadev1771/Github-이슈-마일스톤](https://velog.io/@pikadev1771/Github-%EC%9D%B4%EC%8A%88-%EB%A7%88%EC%9D%BC%EC%8A%A4%ED%86%A4)
 
-reference) [https://api.ncloud-docs.com/docs/ai-naver-clovasummary-api#DocumentObject](https://api.ncloud-docs.com/docs/ai-naver-clovasummary-api#DocumentObject)
+<br>
+<img width="421" alt="스크린샷 2024-10-28 오후 5 20 05" src="https://github.com/user-attachments/assets/6c212109-0766-4fdc-8761-a001a6b410ea">
