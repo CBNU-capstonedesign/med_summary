@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'pages/firebase_options.dart';
-
 import 'pages/home_page.dart';
 import 'pages/search_page.dart';
 import 'pages/notify_page.dart';
 import 'pages/setting_page.dart';
 import 'pages/account.dart';
-
-
-
+import 'pages/record.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -47,42 +43,50 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _pages = <Widget>[
     const HomePage(),
+    const RecordPage(),
     const SearchPage(),
     NotifyPage(),
     const SettingPage(),
   ];
 
-  void _onItemTapped(int index) {
+  void _onDrawerItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
       _isAccountPage = false;
+      Navigator.pop(context); // 드로어 닫기
     });
   }
 
-  //상단바 및 네비게이션바
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        elevation: 0.0,
         title: const Row(
-          mainAxisSize: MainAxisSize.min, // 아이콘과 텍스트의 크기에 맞춰 최소 크기로 설정
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.add_circle_outlined,
-                color: Color(
-                    0xff004f2d
-                )), // 원하는 아이콘 설정
-            SizedBox(width: 4), // 아이콘과 텍스트 사이의 간격 설정 (필요에 따라 조절 가능)
+            Icon(Icons.add_circle_outlined, color: Color(0xff004f2d)),
+            SizedBox(width: 4),
             Text(
               'MEDISUM',
               style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],
         ),
-        centerTitle: false,
-        elevation: 0.0,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
+        ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 16), // 우측 간격 조정
+            padding: const EdgeInsets.only(right: 16),
             child: InkWell(
               customBorder: const CircleBorder(),
               onTap: () {
@@ -91,22 +95,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               },
               child: Container(
-                width: 24, // Text의 크기와 동일한 너비 (텍스트가 보통 24dp 정도)
-                height: 24, // Text의 크기와 동일한 높이
+                width: 24,
+                height: 24,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.white,
-                  // 원형 모양으로 설정
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.4),
                       spreadRadius: 1,
                       blurRadius: 1,
-                      offset: const Offset(0, 0), // 그림자 위치
+                      offset: const Offset(0, 0),
                     ),
                   ],
                 ),
-
                 child: ClipOval(
                   child: _buildProfileImage(""),
                 ),
@@ -115,6 +117,47 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                  color: Colors.deepPurple[200],
+              ),
+              child: const Text(
+                'Menu',
+                style: TextStyle(color: Colors.white, fontSize: 24),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () => _onDrawerItemTapped(0),
+            ),
+            ListTile(
+              leading: const Icon(Icons.keyboard_voice_outlined),
+              title: const Text('Record'),
+              onTap: () => _onDrawerItemTapped(1),
+            ),
+            ListTile(
+              leading: const Icon(Icons.search_outlined),
+              title: const Text('Search'),
+              onTap: () => _onDrawerItemTapped(2),
+            ),
+            ListTile(
+              leading: const Icon(Icons.notifications_outlined),
+              title: const Text('Alarm'),
+              onTap: () => _onDrawerItemTapped(3),
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings_outlined),
+              title: const Text('Settings'),
+              onTap: () => _onDrawerItemTapped(4),
+            ),
+          ],
+        ),
+      ),
       body: Center(
         child: _isAccountPage
             ? const AccountPage()
@@ -122,48 +165,22 @@ class _MyHomePageState extends State<MyHomePage> {
             ? const Text('Please select a page')
             : _pages.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search_outlined),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_outlined),
-            label: 'Alarm',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings_outlined),
-            label: 'setting',
-          ),
-        ],
-        currentIndex: _selectedIndex >= 0 ? _selectedIndex : 0,
-        selectedItemColor: _isAccountPage ? Colors.purple : Colors.deepPurple,
-        unselectedItemColor: Colors.purple,
-        onTap: _onItemTapped,
-      ),
     );
   }
+
   Widget _buildProfileImage(String? imagePath) {
     if (imagePath == null || imagePath.isEmpty) {
       return const Icon(
         Icons.account_circle_outlined,
-        size: 24.0, // 아이콘 크기
-        color: Colors.grey, // 아이콘 색상
+        size: 24.0,
+        color: Colors.grey,
       );
     } else {
       return ClipOval(
         child: Image.asset(
           imagePath,
           fit: BoxFit.cover,
-          width: 24.0, // 이미지 크기
+          width: 24.0,
           height: 24.0,
         ),
       );
